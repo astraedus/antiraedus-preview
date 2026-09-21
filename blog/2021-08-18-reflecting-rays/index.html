@@ -1,0 +1,465 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/x-icon" href="/favicon.ico"><meta name="generator" content="Astro v5.9.3"><meta name="description" content="A problem about how light would reflect in a perfectly circular mirror (and some interesting questions extending into 3D). Took disproportionately long to make this post relative to how long it takes to solve it. Learnt Mathjax here."><meta name="author" content="Antiraedus"><!-- Canonical --><link rel="canonical" href="https://antimatter543.github.io/blog/2021-08-18-reflecting-rays/"><!-- Open Graph --><meta property="og:type" content="article"><meta property="og:url" content="https://antimatter543.github.io/blog/2021-08-18-reflecting-rays/"><meta property="og:title" content="Reflecting Rays, Circular Mirrors and Points | Blog | Antiraedus"><meta property="og:description" content="A problem about how light would reflect in a perfectly circular mirror (and some interesting questions extending into 3D). Took disproportionately long to make this post relative to how long it takes to solve it. Learnt Mathjax here."><meta property="og:site_name" content="Antiraedus"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://antimatter543.github.io/blog/maths/unknowncircle.png"><meta property="og:image:alt" content="Reflecting Rays, Circular Mirrors and Points | Blog | Antiraedus"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Reflecting Rays, Circular Mirrors and Points | Blog | Antiraedus"><meta name="twitter:description" content="A problem about how light would reflect in a perfectly circular mirror (and some interesting questions extending into 3D). Took disproportionately long to make this post relative to how long it takes to solve it. Learnt Mathjax here."><meta name="twitter:image" content="https://antimatter543.github.io/blog/maths/unknowncircle.png"><meta property="article:published_time" content="2021-08-18T00:00:00.000Z"><meta property="article:tag" content="professional"><meta property="article:tag" content="mathematics"><meta property="article:tag" content="physics"><meta property="article:tag" content="vectors"><meta property="article:tag" content="matrices"><meta property="article:tag" content="light rays"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"><link rel="alternate" type="application/rss+xml" title="Antiraedus Blog" href="/rss.xml"><title>Reflecting Rays, Circular Mirrors and Points | Blog | Antiraedus</title><!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;7e948d7032d04cf5a82eb1d230ad60ed&quot;}"></script><link rel="stylesheet" href="/_astro/blog.Bu-yeJdm.css">
+<link rel="stylesheet" href="/_astro/_slug_.CBvY1Jbc.css"></head> <body> <nav class="navbar" data-astro-cid-5blmo7yk> <div class="container" data-astro-cid-5blmo7yk> <div class="logo" data-astro-cid-5blmo7yk> <a href="/" aria-label="Antiraedus, home" data-astro-cid-5blmo7yk> <span class="avatar" data-astro-cid-5blmo7yk><img src="/profile-top.jpg" alt="" width="36" height="36" data-astro-cid-5blmo7yk></span> <span class="wordmark" data-astro-cid-5blmo7yk>Antiraedus</span> </a> </div> <button class="mobile-menu-toggle" aria-label="Toggle menu" data-astro-cid-5blmo7yk> <span class="hamburger-line" data-astro-cid-5blmo7yk></span> <span class="hamburger-line" data-astro-cid-5blmo7yk></span> <span class="hamburger-line" data-astro-cid-5blmo7yk></span> </button> <div class="nav-links" data-astro-cid-5blmo7yk> <a href="/#home" data-section="home" data-astro-cid-5blmo7yk>Home</a> <a href="/#about" data-section="about" data-astro-cid-5blmo7yk>About</a> <a href="/#projects" data-section="projects" data-astro-cid-5blmo7yk>Projects</a> <a href="/blog" data-section="writing" data-astro-cid-5blmo7yk>Blog</a> <a href="/creatives" data-astro-cid-5blmo7yk>Creatives</a> <a href="/#contact" data-section="contact" data-astro-cid-5blmo7yk>Contact</a> <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" data-astro-cid-5blmo7yk> <span class="theme-toggle-icon" data-astro-cid-5blmo7yk> <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-5blmo7yk> <circle cx="12" cy="12" r="5" data-astro-cid-5blmo7yk></circle> <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" data-astro-cid-5blmo7yk></path> </svg> <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-5blmo7yk> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" data-astro-cid-5blmo7yk></path> </svg> </span> </button> </div> </div> </nav>  <script type="module">document.addEventListener("DOMContentLoaded",()=>{const d=document.querySelector(".navbar");function m(){window.scrollY>20?d?.classList.add("scrolled"):d?.classList.remove("scrolled")}window.addEventListener("scroll",m,{passive:!0}),m();const s=document.querySelector(".mobile-menu-toggle"),c=document.querySelector(".nav-links");function r(){s.classList.toggle("active"),c.classList.toggle("active")}s&&s.addEventListener("click",r);const a=document.querySelectorAll(".nav-links a");a.forEach(e=>{e.addEventListener("click",()=>{c.classList.contains("active")&&r()})}),document.addEventListener("click",e=>{!s.contains(e.target)&&!c.contains(e.target)&&c.classList.contains("active")&&r()});const v=["home","about","projects","writing","contact"],u=new Map;a.forEach(e=>{const t=e.dataset.section;t&&u.set(t,e)});function h(e){a.forEach(t=>t.classList.toggle("is-active",t===e))}const l=window.location.pathname.replace(/\/+$/,"")||"/";if(l===""||l==="/"||l==="/index.html"){let e=function(){if(!t.length)return;const n=window.scrollY+80;let o=t[0];for(const f of t)f.el.offsetTop<=n&&(o=f);window.innerHeight+window.scrollY>=document.body.scrollHeight-2&&(o=t[t.length-1]),h(u.get(o.id)||null)};const t=v.map(n=>({id:n,el:document.getElementById(n)})).filter(n=>n.el);window.addEventListener("scroll",e,{passive:!0}),window.addEventListener("resize",e,{passive:!0}),e()}else{let e=null;a.forEach(t=>{const n=t.getAttribute("href")||"";if(n.startsWith("#")||n.includes("#"))return;const o=n.replace(/\/+$/,"")||"/";o!=="/"&&l.startsWith(o)&&(e=t)}),e&&h(e)}const g=document.getElementById("theme-toggle"),i=document.documentElement;(localStorage.getItem("theme")||"light")==="light"?i.setAttribute("data-theme","light"):i.removeAttribute("data-theme");function w(){const t=i.getAttribute("data-theme")==="light"?"dark":"light";i.setAttribute("data-theme-transitioning",""),t==="light"?i.setAttribute("data-theme","light"):i.removeAttribute("data-theme"),localStorage.setItem("theme",t),setTimeout(()=>{i.removeAttribute("data-theme-transitioning")},350)}g&&g.addEventListener("click",w)});</script> <main>  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Reflecting Rays, Circular Mirrors and Points","description":"A problem about how light would reflect in a perfectly circular mirror (and some interesting questions extending into 3D). Took disproportionately long to make this post relative to how long it takes to solve it. Learnt Mathjax here.","datePublished":"2021-08-18T00:00:00.000Z","dateModified":"2021-08-26T00:00:00.000Z","author":{"@type":"Person","name":"Antiraedus"},"image":"https://antimatter543.github.io/blog/maths/unknowncircle.png","url":"https://antimatter543.github.io/blog/2021-08-18-reflecting-rays/","mainEntityOfPage":{"@type":"WebPage","@id":"https://antimatter543.github.io/blog/2021-08-18-reflecting-rays/"}}</script>  <div class="progress-bar-container" data-astro-cid-4sn4zg3r> <div class="progress-bar" id="reading-progress" data-astro-cid-4sn4zg3r></div> </div> <main class="blog-post" data-astro-cid-4sn4zg3r> <article data-astro-cid-4sn4zg3r> <div class="post-layout" data-astro-cid-4sn4zg3r> <!-- Sidebar TOC (desktop only) --> <aside class="toc-sidebar" id="toc-sidebar" data-astro-cid-4sn4zg3r> <nav class="toc-nav" data-astro-cid-4sn4zg3r> <div class="toc-label" data-astro-cid-4sn4zg3r>On this page</div> <ul class="toc-list" data-astro-cid-4sn4zg3r> <li class="toc-item toc-depth-2" data-astro-cid-4sn4zg3r> <a href="#contents" class="toc-link" data-astro-cid-4sn4zg3r>Contents</a> </li><li class="toc-item toc-depth-2" data-astro-cid-4sn4zg3r> <a href="#the-steps" class="toc-link" data-astro-cid-4sn4zg3r>The steps</a> </li><li class="toc-item toc-depth-2" data-astro-cid-4sn4zg3r> <a href="#1-find-the-direction-vector-of-r0r_0r0" class="toc-link" data-astro-cid-4sn4zg3r>1. Find the direction vector of r0r_0r0​</a> </li> </ul> </nav> </aside> <div class="post-main" data-astro-cid-4sn4zg3r> <header class="blog-header" data-astro-cid-4sn4zg3r> <a href="/blog" class="back-link" data-astro-cid-4sn4zg3r> <span class="arrow" aria-hidden="true" data-astro-cid-4sn4zg3r>&larr;</span> Back to blog
+</a> <p class="post-meta" data-astro-cid-4sn4zg3r> <time datetime="2021-08-18T00:00:00.000Z" data-astro-cid-4sn4zg3r>August 18, 2021</time> <span aria-hidden="true" data-astro-cid-4sn4zg3r> · </span>16 min read<span aria-hidden="true" data-astro-cid-4sn4zg3r> · </span>professional<span aria-hidden="true" data-astro-cid-4sn4zg3r> · </span>mathematics<span aria-hidden="true" data-astro-cid-4sn4zg3r> · </span>physics<span aria-hidden="true" data-astro-cid-4sn4zg3r> · </span>vectors<span aria-hidden="true" data-astro-cid-4sn4zg3r> · </span>matrices<span aria-hidden="true" data-astro-cid-4sn4zg3r> · </span>light rays </p> <h1 data-astro-cid-4sn4zg3r>Reflecting Rays, Circular Mirrors and Points</h1> <p class="post-lede" data-astro-cid-4sn4zg3r>A problem about how light would reflect in a perfectly circular mirror (and some interesting questions extending into 3D). Took disproportionately long to make this post relative to how long it takes to solve it. Learnt Mathjax here.</p> <div class="featured-image" data-astro-cid-4sn4zg3r> <img src="/blog/maths/unknowncircle.png" alt="Reflecting Rays, Circular Mirrors and Points" data-astro-cid-4sn4zg3r> </div> </header> <div class="blog-content" data-astro-cid-4sn4zg3r> <h1 id="the-original-question">The Original Question</h1>
+<blockquote>
+</blockquote>
+<p style="font-size: 20px; text-align: center; "> Imagine a circular mirror with a radius of 5 that exists on an origin. 
+A ray of light beings at 10i-10j and enters the mirror such that 
+it intersects the point (-2, sqrt(21)). 
+Assume that the mirror allows a ray to enter before closing and thus trapping a light ray inside.
+<br>
+<br>
+</p><p>What is the point where the first reflected ray
+collides with the circular mirror (excluding the reflected ray’s initial position)? </p><p></p>
+<p>This is a calculator allowed question (I’m thinking of a TI-84 graphics calculator when I say this)
+Note on original question. [^1]</p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="#preface">Preface</a></li>
+<li><a href="#solving">Solving</a>
+<ul>
+<li><a href="#the-steps">The steps</a>
+<ul>
+<li>
+<ul>
+<li><a href="#1-find-the-direction-vector-of-r_0-ie-so-it-collides-with-a-from-the-initial-point">1. Find the direction vector of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (i.e so it collides with A from the initial point).</a></li>
+<li><a href="#2-find-the-tangent--point-a">2. Find the tangent @ Point A</a></li>
+<li><a href="#3-get-to-the-chopper-normal-frac-1m_t">3. Get to the <del>chopper</del> normal (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo>−</mo><mn>1</mn></mrow><msub><mi>m</mi><mi>T</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">\frac{-1}{m_T}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2904em;vertical-align:-0.4453em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4453em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>)</a></li>
+<li><a href="#4-find-theta">4. Find <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span></a></li>
+<li><a href="#5-generate-the-reflected-ray-r_1">5. Generate the reflected ray <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">r_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></a></li>
+<li><a href="#6-find-the-reflected-rays-intersection-with-the-circle--point-b">6. Find the reflected ray’s intersection with the circle => Point B.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#1-find-the-direction-vector-of-r_0">1. Find the direction vector of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></a></li>
+</ul>
+</li>
+</ul>
+<h1 id="preface">Preface</h1>
+<p>I had the idea for this question just after my final internal specialist exam (specialist is equivalent to Maths C or whatever your extended x2 maths is). However, this question isn’t really a specialist question as much as a question that involves some topics covered in the subject. I implore you to try it out! You can use google, but try to search for sub-problems instead of the true problem instead.</p>
+<p>This question actually has some old roots in a problem I was thinking about in 2019 — ray reflection —. There’s a quick conclusion I wrote somewhere: I’ll upload some pictures if I can find the papers.</p>
+<p>Anyways, let’s delve into this one! Don’t ask me why, but this question brings me joy: Easy to understand and interpret yet relies on execution or ‘elegance’ to achieve. If you figured out a different / better way of solving it, please tell me on one of my contacts!</p>
+<p>The way I will solve it is by actually explaining the concepts before using them, which is useful for learning but takes much more space.</p>
+<h1 id="solving">Solving</h1>
+<p>Firstly, let’s understand what’s actually going on here by drawing a nice diagram. I’m going to be using desmos here with some very nice snipping tool skills (it was either that or my hand-drawn items).</p>
+<p><img src="/blog/maths/unknowncircle.png" alt="Diagram of circle and rays (unsolved)"></p>
+<p>Now we know what’s actually going on.</p>
+<p>Firstly, there’s the light ray <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> which enters the mirror (imagine there’s a hole that closes once the light enters) and collides with the circular mirror at Point A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>2</mn><mo separator="true">,</mo><msqrt><mn>2</mn></msqrt><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-2, \sqrt21)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1572em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;">2</span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>. It is then reflected by some <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span> and the first reflected ray <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">r_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> collides with the mirror at Point B, which is what we’re trying to find. We are solving for Point B.</p>
+<p>From the question (and the law of reflection), we know that <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> reflects with some <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span> with respect to the normal <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">m_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. But how can we find it? Well, if we can somehow find the tangent <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>T</mi></msub></mrow><annotation encoding="application/x-tex">m_T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> at Point A, we’ll be able to find <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">m_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+<p>We can get to Point B and figure out the solution in a few simple steps. Working backwards, we need <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">r_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> so we want to somehow create a new vector <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span> away from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">m_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. We can work out <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span> with <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">m_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. We can get <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">m_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> with the tangent and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is relatively easy to find. Thus:</p>
+<h2 id="the-steps">The steps</h2>
+<h4 id="1-find-the-direction-vector-of-r0r_0r0-ie-so-it-collides-with-a-from-the-initial-point">1. Find the direction vector of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (i.e so it collides with A from the initial point).</h4>
+<h4 id="2-find-the-tangent--point-a">2. Find the tangent @ Point A</h4>
+<h4 id="3-get-to-the-chopper-normal-1mtfrac-1m_tmt1">3. Get to the <del>chopper</del> normal (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo>−</mo><mn>1</mn></mrow><msub><mi>m</mi><mi>T</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">\frac{-1}{m_T}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2904em;vertical-align:-0.4453em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3567em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1433em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4453em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>)</h4>
+<h4 id="4-find-θthetaθ">4. Find <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span></span></span></span></h4>
+<h4 id="5-generate-the-reflected-ray-r1r_1r1">5. Generate the reflected ray <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">r_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></h4>
+<h4 id="6-find-the-reflected-rays-intersection-with-the-circle--point-b">6. Find the reflected ray’s intersection with the circle => Point B.</h4>
+<p>I made some calculation errors on some steps, but Step 5 was the one that stumped me for a bit when I was trying to solve it; kept gettin nonsense <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">r_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>‘s.
+Anyways, let’s solve it.</p>
+<h2 id="1-find-the-direction-vector-of-r0r_0r0">1. Find the direction vector of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></h2>
+<p>Let’s get the diagram back.
+<img src="/assets/maths/img/1.png" alt="DIAGRAM OF JUST CIRCLE + R1"></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">r_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> being in i,j components is not really ideal, and in this case we want (x,y). So we’ll just convert it. The ray starts at <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>10</mn><mo separator="true">,</mo><mo>−</mo><mn>10</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(10, -10)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">10</span><span class="mclose">)</span></span></span></span> and we have to reach <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>2</mn><mo separator="true">,</mo><msqrt><mn>2</mn></msqrt><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-2, \sqrt21)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1572em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;">2</span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span><span class="mord">1</span><span class="mclose">)</span></span></span></span>.</p>
+<p>Well, let’s get the ray equation <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>r</mi><mo>⃗</mo></mover><mo>=</mo><mover accent="true"><mi>a</mi><mo>⃗</mo></mover><mo>+</mo><mi>k</mi><mover accent="true"><mi>d</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{r} = \vec{a} + k\vec{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.714em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.714em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1799em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"></path></svg></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7973em;vertical-align:-0.0833em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.714em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">a</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2355em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"></path></svg></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9774em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9774em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">d</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0688em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"></path></svg></span></span></span></span></span></span></span></span></span></span>.</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>a</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.714em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.714em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">a</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2355em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"></path></svg></span></span></span></span></span></span></span></span></span></span> is the initial position, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>d</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9774em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9774em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">d</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0688em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"></path></svg></span></span></span></span></span></span></span></span></span></span> is the direction vector, k is a constant that changes the length of the ray. We don’t really care about k here.</p>
+<p>Of course, the direction vector is the direction it’s going: towards Point A, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>2</mn><mo separator="true">,</mo><msqrt><mn>2</mn></msqrt><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-2, \sqrt21)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1572em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;">2</span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>10</mn><mo separator="true">,</mo><mo>−</mo><mn>10</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(10, -10)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mord">10</span><span class="mclose">)</span></span></span></span>. Thus, the direction is just:</p>
+<p><img src="/assets/maths/img/2.png" alt="IMAGE OF SIMPLE TRIG THING"></p>
+<span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;EOF&#x27;, got &#x27;&#x26;&#x27; at position 9: \vec{d} &#x26;̲= Final - Init …" style="color:#cc0000">\vec{d} &#x26;= Final - Init \\
+&#x26;= A - Init \\
+&#x26;= -2i+ \sqrt21j -(10i - 10j) \\  
+d &#x26;= -12i+(\sqrt21 +10)j
+\end{aligned}$$
+
+I was going to do the calculations in column vector form but we're going to stick with i,j notation right now because it's easier to type up. I might switch it over eventually. Maybe. Probably not.
+
+So it's going backwards in x, upwards in y. Makes sense to me! Note: it doesn't matter if $$\vec{d}$$ is $$-12i+(\sqrt21 +10)j$$ or $$-120i+(10\sqrt21 +100)j$$, they still point in the same direction (e.g &#x3C;--, &#x3C;----) (same gradient). They just have different lengths; k is the scaling factor.
+
+So: 
+
+$$\vec{r} = \begin{pmatrix} 10 \\ -10 \end{pmatrix} + \begin{pmatrix} -12 \\ \sqrt21 + 10 \end{pmatrix}k $$
+&#x3C;!-- The above is how you can do matrices. I.e begin with pmatrix, and then the double backslash is when you want to go next line. -->
+
+Cool.
+
+We already know it hits at Point A, so now let's find the normal! But first, we need to find the tangent as an intermediary step.
+
+## 2. Find the Tangent at Point A 
+![Circle, ray and tangent](/assets/maths/img/1.png)
+
+I'm going to assume you have knowledge of derivatives &#x26; implicit differnetiation here (sorry). Now, a derivative is literally just a 'gradient function'. Instead of doing annoying $$\frac{\delta y}{\delta x}$$ every time, we do a sneaky calculus and say 2 points reaching infinitesimaly close at Point X have gradient $$ m = f'(x) $$. 3blue1brown has good animations of these.
+
+![Moving gif of derivative. Points moving together at Point X.](/assets/maths/derivative.gif)
+
+Thus, a derivative simply maps a point -> gradient.
+
+Using implicit differentiation, the derivative at Point A is just:
+
+$$\begin{aligned}
+\frac{d}{dx} (x^2 + y^2) &#x26;= \frac{d}{dx} 5^2 \\
+2x + 2y\frac{dy}{dx} &#x26;= 0 \\ 
+\frac{dy}{dx} &#x26;= \frac{-x}{y} 
+\end{aligned}$$
+
+Note that unlike the simple derivatives, you have both x and y to input to get the gradient. I.e, it's not $$f(x)$$ but $$f(x,y)$$. 
+Specifically:
+$$f(x,y) = x^2 + y^2 = 5^2$$
+
+$$f'(x,y) = \frac{-x}{y} = \frac{dy}{dx}$$
+
+![A function is simply a process that eats inputs and spits out (produces) an output.](/assets/maths/img/3.png)
+
+Thus, for Point A $$(-2, \sqrt21)$$: 
+
+$$\begin{aligned} f'(x,y) &#x26;=  f'(-2, \sqrt21) \\
+m_T &#x26;= -\frac{2}{\sqrt21}  \end{aligned}$$
+
+We'll call it $$m_T$$ as a nickname for 'tangent gradient'.
+
+Now, our diagram looks like this:
+
+![Wow crazy ray tangent circle!!](/assets/maths/img/4.png)
+
+## 3. Find the normal 
+
+Easiest one. Just flip it $$90^o$$. There's a few ways to know that $$m_n = \frac{-1}{m_T}$$, and I actually only know one of them (figured it out when writing the post, actually!) If you assume knowledge of the dot product $$a \cdot b $$, and know that when $$a \cdot b = 0$$, a is perpendicular to b => $$a \perp b$$. And really, the $$\frac{-1}{m_T}$$ is flipping the tangent, and then making it -1/x so that when you dot product them they become 0. Thus, they are perpendicular! Cool. So,
+
+$$\begin{aligned}
+ m_n = \frac{-1}{m_T} &#x26;= \frac{-1}{\frac{2}{\sqrt21}} \\
+m_n &#x26;= \frac{-\sqrt21}{2} 
+\end{aligned}$$
+
+Oh yeah, our diagram's coming together (no meme images today, however).
+
+![DIAGRAM](/assets/maths/img/5.png)
+
+I can't help but draw the next thing here: humans have foresight, we can plan, so use it! We'll cal the first reflected ray $$r_1$$.
+
+## 4. find $$\theta$$
+
+How can we find $$\theta$$? Well..
+
+Dot product!
+
+$$ \vec{a} \cdot \vec{b} = |a||b|cos(\theta)$$
+
+But our $$m_n$$ is in cartesian form and not vector, oh noes! Is there a way to convert a gradient into a direction vector? 🤔
+
+Well, if a gradient is in $$ m = \frac{\Delta y}{\Delta x}$$ and $$\vec{d} = \begin{pmatrix} x \\ y \end{pmatrix} $$ and our $$ m_n = \frac{-sqrt21}{2} = \frac{\Delta y}{\Delta x}$$...
+HMMMMM.
+
+See where I'm going?
+
+Flip the lil thingy!
+
+$$\begin{aligned}
+m_n &#x26;\to \vec{d} \\ 
+\frac{\Delta y}{\Delta x} &#x26;\to \begin{pmatrix} x \\ y \end{pmatrix} \\ 
+\frac{-\sqrt21}{2} &#x26;\to \begin{pmatrix} 2 \\ -\sqrt21 \end{pmatrix} = \vec{d_n} \\
+Dn deez NU-
+\end{aligned}$$
+
+I'm just gonna call it $$m_n$$ even though it's technically $$\vec{d_n}$$. Take it or leave it.
+So now we have our $$m_n = \begin{pmatrix} 2 \\ -\sqrt21 \end{pmatrix} $$, going right an down. $$\vec{d_0} goes \begin{pmatrix} -12 \\ \sqrt21 + 10 \end{pmatrix} $$ so the diagram looks like:
+
+![DIAGRAM](/assets/maths/img/6.png)
+
+So, doing
+$$\begin{aligned}
+\vec{a} \cdot \vec{b} &#x26;= |a||b|cos(\theta) \\ 
+\theta &#x26;= \cos^-1(\frac{a \cdot b}{|a||b|}) 
+\end{aligned}$$
+
+We're finding the angle between vectors, right, so let's just do it! 
+
+Wooahh! Slow down there Nelly, what are you actually calculating?
+
+In the formula above, $$\theta$$ is the angle between 2 vectors.
+
+![DIAGRAM](/assets/maths/img/7.png)
+
+
+See anything fishy with the diagram above?
+Let's try to make A the origin, and since they're direction vectors, it doesn't matter where they start as long as they meet. They'll always give the same angle (draw this and experiment on paper to proof it for yourself if you want).
+
+![oofy vectors](/assets/maths/img/8.png)
+
+
+See it? Our $$\theta$$ isn't actually what's being calculated! We're really calculating $$\sim$$!!! Since that's the angle between the two direction vectors.
+
+Let's try it. Calculate $$\theta$$.
+
+Seriously, use $$\vec{a} = m_n = \begin{pmatrix} 2 \\ -\sqrt21 \end{pmatrix} $$ and $$\vec{b} = \vec{d_0} = \begin{pmatrix} -12 \\ \sqrt21+10 \end{pmatrix} $$.
+
+I get $$\theta = 164.13^{\circ}$$. You can use [symbolab](https://www.symbolab.com/solver/vector-angle-calculator "Symbolab link") , which seems a bit nonsense when we look at the diagram [show diagram small] and especially the desmos diagram for exact numbers.
+
+![Circle diagram and angle](/assets/maths/img/9.png)
+
+Does that look like $$164^{\circ}$$ to you?
+
+Basically, **what we thought was $$\theta$$ in our heads wasn't actually the real $$\theta$$ we were calculating.**
+
+So, how do we fix it? Well, it's actually really easy.
+
+![oofy vectors](/assets/maths/img/8.png)
+If that vector gets us the $$\propto$$, then if we turn $$\vec{d_0}$$ around (direction vector of the first ray), it should give use the  other angle.
+
+So, $$-\vec{d_0} = \begin{pmatrix} 12 \\ -\sqrt21-10 \end{pmatrix} $$, and now we get:
+
+![fixedvectors](/assets/maths/img/10.png)
+
+Tada! And let's try it with our angle formula, 
+
+$$m_n = \begin{pmatrix} 2 \\ -\sqrt21 \end{pmatrix} $$ and  $$-\vec{d_0} = \begin{pmatrix} 12 \\ -\sqrt21-10 \end{pmatrix} $$
+
+$$\begin{aligned}
+\theta &#x26;= \cos^-1(\frac{a \cdot b}{|a||b|}) \\
+&#x26;= \cos^-1(\frac{\begin{pmatrix} 2 \\ -\sqrt21 \end{pmatrix} \cdot \begin{pmatrix} 12 \\ -\sqrt21-10 \end{pmatrix}}{|m_n||-\vec{d_0}|}) \\ 
+&#x26;= \cos^-1(\frac{2*12 + -\sqrt21*(-\sqrt21-10)}{5*\sqrt{265+20\sqrt{21}}}) \\
+&#x26;= \cos^-1(\frac{90.826}{83.15}) \\ 
+&#x26;= \cos^-1(0.96187) \\ 
+\theta &#x26;= 15.873^{\circ}
+\end{aligned}$$
+
+Now we know the angle that the ray also gets reflected by! If you calculated the other angle before, you'll notice that our $$\theta$$ is just $$180^{\circ}-original$$. If you don't get why, draw out the 2 vectors. Seriously! And then try flipping one of them and seeing what angle that gets. Straight lines, 180... Ring a bell?
+
+## 5. Generate the reflected ray $$\vec{r_1}$$
+
+![Hypothetical reflected ray drawn](/assets/maths/img/11.png)
+
+
+$$\vec{r_1} = \vec{a} + k\vec{d}$$
+
+We'll say the initial point $$\vec{a} = \begin{pmatrix} -2 \\ \sqrt21 \end{pmatrix} $$ so it begins there. From the info we have, how do we figure out $$\vec{r_1}$$, namely, its direction vector $$\vec{d_1}$$?
+
+Well.
+
+This took a while, but first I tried to rearrange dot product maybe? But that didn't make too much sense to me. Why's the vector down there??
+
+Let's simplify the problem: Given an angle and a vector, how do I produce another vector $$r_1$$ (the rotated vector)?
+![DIAGRAM](/assets/maths/img/12.png)
+
+
+Eventually, I found rotation matrices! They're so good. [Here's a link to read more](https://en.wikipedia.org/wiki/Rotation_matrix), and [this one](https://matthew-brett.github.io/teaching/rotation_2d.html)
+
+$$ R(\theta) = \begin{bmatrix} \cos{\theta} &#x26; -\sin{\theta}  \\ \sin{\theta} &#x26; \cos{\theta} \end{bmatrix} $$
+
+Basically, multiplying a vector $$v_1$$ and $$R(\theta)$$, we do:
+![DIAGRAM](/assets/maths/img/13.png)
+
+$$\begin{aligned}
+\vec{v_2} = R(\theta) \cdot \vec{v_1} \\ 
+\begin{pmatrix} x' \\ y' \end{pmatrix} &#x26;= \begin{bmatrix} \cos{\theta} &#x26; -\sin{\theta}  \\ \sin{\theta} &#x26; \cos{\theta} \end{bmatrix} \cdot \begin{pmatrix} x \\ y \end{pmatrix}
+\end{aligned}$$
+
+where $$x' = x\cos{\theta}-y\sin{\theta}$$, 
+
+and $$y' = x\sin{\theta} + y\cos{\theta}$$
+
+These are OP. We can use either  $$m_n$$ and rotate clockwise by $$\theta$$ or use $$-\vec{d_0}$$ and rotate clockwise by $$2\theta$$. By the way, rotating clockwise is literally just a $$-\theta$$.
+
+We'll just use $$m_n$$.
+
+$$\begin{aligned}
+\vec{d_1} &#x26;= R(\theta) \cdot \vec{m_n} \\
+&#x26;= R(-15.873^{\circ}) \cdot \vec{m_n} \\
+&#x26;= \begin{bmatrix} \cos{-15.873^{\circ}} &#x26; -\sin{-15.873^{\circ}}  \\ \sin{-15.873^{\circ}} &#x26; \cos{-15.873^{\circ}} \end{bmatrix} \cdot \begin{pmatrix} 2 \\ -\sqrt21 \end{pmatrix} \\ 
+\vec{d_1} &#x26;= \begin{pmatrix} 0.670 \\ -4.955 \end{pmatrix}
+\end{aligned}$$
+
+Note: You might get a different answer, but they should still be the same direction vector (i.e one is a scalar of the other). You can easily check this by doing $$\frac{\Delta y}{\Delta x}$$ on desmos or something and seeing if both our vectors give you the same gradient. Don't forget your angle changes based on which vector you rotated :).
+
+Nice! And since we know its starting point  Point A $$(-2, \sqrt21) $$:
+
+$$\begin{aligned}
+\vec{r_1} &#x26;= \vec{a} + k\vec{d} \\ 
+\vec{r_1} &#x26;=  \begin{pmatrix} -2 \\ \sqrt21 \end{pmatrix} + \begin{pmatrix} 0.670 \\ -4.955  \end{pmatrix}k
+\end{aligned}$$
+
+And that's our reflected ray equation!
+
+## 6. Find Point B
+![DIAGRAM](/assets/maths/img/14.png)
+
+
+This one is arguably very simple (especially if you have technology). You just find where the ray and the circle intersect. There'll only be two points (think of a straight line going through a circle), and one of them is our initial starting point.
+
+The only confusing part would be converting from vector format to cartesian form so you can figure out the intersection, but as long as you just *think* about what's going on, and what's what, you'll be fine. Let's get converting!
+
+Alright, we have: 1 point (our initial point), and the direction (i.e our gradient).
+As I said earlier on, vector is in $$(x,y)$$ but gradients are $$\frac{\Delta y}{\Delta x}$$ so we just flip our $$\vec{d_1}$$ from $$\begin{pmatrix}0.670 \\ -4.955 \end{pmatrix}$$ to $$m = \frac{-4.955}{0.670}$$. That's our gradient (you can see it in desmos; it's going downwards. Makes sense to me!) Our initial point is $$-2i + \sqrt21j$$, so, using a nice form of straight line equation that lets us find it given a specific point:
+
+$$\begin{aligned}
+ y - y_1 &#x26;= m(x-x_1) \\ 
+y - \sqrt21 &#x26;= \frac{-4.955}{0.670}(x--2) \\
+y ~&#x26;= \frac{-4.955}{0.670}x -14.791 +\sqrt21 \\ 
+y ~&#x26;= \frac{-4.955}{0.670}x - 10.208
+\end{aligned}$$
+
+Looking at an desmos image, it looks like.
+![Diagram reflected ray and circle](/assets/maths/step6.png)
+
+But isolation is sad! (And dangerous), so let's see our final image.
+
+![THE FINAL CIRCLE (no coords)](/assets/maths/completenocoords.png)
+
+With axes shown:
+
+![THE FINAL CIRCLE (axes shown!)](/assets/maths/completewithcoords.png)
+
+Our Point B is approximately $$(-0.711, -4.949)$$!!! Woooo!!!
+
+The way you solve it on paper is to substitute y into $$x^2 + y^2 = 25$$ and and solve that quadratic. So, for solving on paper:
+
+$$\begin{aligned}
+x^2 + (\frac{-4.955}{0.670}x - 10.208)^2 &#x26;= 5^2 \\ 
+55.69x^2+150.99x+79.2 &#x26;= 0 \\ 
+x &#x26;= -2, -0.711 \\ 
+\end{aligned}$$
+
+So there's our 2 intersection x's, and we know that $$ x = -2 $$ is our initial point, so the answer must be $$x = -0.711$$. Don't just end it here, finish the question! Find Point B!
+
+$$\begin{aligned}
+x^2 + y^2 &#x26;= 25 \\
+ y &#x26;= \sqrt{25-(-0.711)^2} \\
+y &#x26;= \pm 4.949
+\end{aligned}$$
+
+Using some common sense, the sector of the circle we want is in the negative y axis, so it's $$y =-4.949$$. Therefore, our $$Point B = (-0.711, -4.949)$$. Nice!
+
+## Extensions
+
+The first way that comes to my mind is: Well, if you can do it for 2D circles, why not 3D spheres? Differentiating it (I'm guessing by using multivariable calculus, which I have not currently learnt) to get a plane equation tangent @ any point on the sphere, and doing the same thing (but in 3D) of course would be interesting. And well... Why stop there!? An N dimensional hypersphere, why not? It'll still bounce at the same angle incoming to the normal (normal hyperplane?). :o
+
+![Extension 1, a sphere with a vector pointing through it](/assets/maths/extension1.png)
+The second extension would be to generalise this problem into f(n) \rightarrow (x,y). I.e, given how many bounces you want (n), tell me the Point that the light ray hits. This is why I started the ray as $$r_0$$, so you could easily say: "Oh, where does the 5th reflected ray hit? f(5). The question we solved above is f(1), "The point that the first reflected ray hits", Point B.
+I'd probably work this out programmatically first before trying to convert it back into maths speak.
+
+If you combine the two extensions I suggested, the ultimate question would be, 	
+
+&#x3C;b>"Create an $$f(D, n, \vec{a}, \vec{d}) \rightarrow (x,y,z, ...)$$ that returns the coordinates of the  light ray $$\vec{r_n} $$ collision within a hypersphere at Point $$P_n $$ given the dimensional number of the system, $$D$$, the number of times the ray is reflected, $$n$$, and the initial starting point and direction vector of the light ray $$\vec{a}, \vec{d}$$ respectively.
+Assume the light can enter the hypersphere before it is trapped inside. 
+Let $$\vec{r_0}$$ be the initial ray." &#x3C;/b>
+
+It's worded a bit poorly, but you'd get what I meant given the context of this post. For context, our Point A in the 2D example would be considered $$P_0$$, and Point B (the one we solved for) would be $$P_1$$. That sounds fun. Actually, you could generalise it even more by just letting $$P_1$$ become $$P$$, *any point on the hypersphere*. Contact me if you do them, I'd love to see it! I wonder if it eventually hits all points on the hypersphere or if it follows a pattern, and whether this applies to any dimension or only certain ones. So cool, right?
+
+Furthermore, if you *really* felt like it, you could add irl values like the speed of light so $$\vec{r}$$ becomes a function of time $$\vec{r}(t)$$. From there, you could ask "**When** does $$P_n$$ occur if the first ray is initialised at t=0 seconds?"
+
+
+### Footnotes / Other
+If you look back in history, this problem actually has some ancestry roots in a problem I was thinking about in grade 10 involving the reflection of  &#x3C;a href="#" class="tooltip">light in a mirror &#x3C;span> took me way too long to notice the simplest thing - I blame missing a lesson + only being taught a 'fixed' set of cases instead of the general system). &#x3C;/span> &#x3C;/a> Huh!
+
+
+[^1]: Originally, the question was -10i-10j and point -2, -sqrt(29). There's a few errors with this (I had the wrong diagram in my head which caused me to get the wrong angle and be thoroughly confused for an hour or two until it clicked): 1) The point that the ray intersects is actually on the same side as the ray initialisation point, i.e it 'hits' the circle on the outside (which I then demand it to bounce off). I.e it never got inside. Lmao. 
+
+https://matthew-brett.github.io/teaching/rotation_2d.html
+https://en.wikipedia.org/wiki/Rotation_matrix
+https://www.wolframalpha.com/widgets/view.jsp?id=bd71841fce4a834c804930bd48e7b6cf</span> </div> <section class="comments-section" data-astro-cid-jvxsf75u> <h2 class="comments-heading" data-astro-cid-jvxsf75u>Comments</h2> <script src="https://giscus.app/client.js" data-repo="antimatter543/antimatter543.github.io" data-repo-id="R_kgDOO9PSxw" data-category="Announcements" data-category-id="DIC_kwDOO9PSx84CsfWa" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async></script> </section> <script>
+  function updateGiscusTheme() {
+    // Check if light theme is active (data-theme="light" attribute exists)
+    const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
+    const theme = isLightMode ? 'light' : 'dark';
+    
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+    
+    iframe.contentWindow.postMessage(
+      { giscus: { setConfig: { theme } } }, 
+      'https://giscus.app'
+    );
+  }
+
+  // Set up observer to watch for theme changes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        updateGiscusTheme();
+      }
+    });
+  });
+
+  // Start observing the document element for attribute changes
+  observer.observe(document.documentElement, { 
+    attributes: true, 
+    attributeFilter: ['data-theme'] 
+  });
+
+  // Update theme when the page loads
+  window.addEventListener('load', () => {
+    updateGiscusTheme();
+  });
+
+  // Also update theme when Giscus iframe loads (fallback)
+  document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for Giscus to load, then update theme
+    setTimeout(() => {
+      updateGiscusTheme();
+    }, 1000);
+  });
+</script>  <div class="blog-navigation" data-astro-cid-4sn4zg3r> <a href="/blog" class="back-link" data-astro-cid-4sn4zg3r> <span class="arrow" aria-hidden="true" data-astro-cid-4sn4zg3r>&larr;</span> Back to all posts
+</a> </div> </div> </div> </article> </main>  </main> <footer class="footer" data-astro-cid-sz7xmlte> <div class="container" data-astro-cid-sz7xmlte> <div class="footer-content" data-astro-cid-sz7xmlte> <div class="footer-brand" data-astro-cid-sz7xmlte> <span class="footer-name" data-astro-cid-sz7xmlte>Antiraedus</span> <p class="footer-copy" data-astro-cid-sz7xmlte>&copy; 2026 Antiraedus</p> </div> <nav class="footer-links" data-astro-cid-sz7xmlte> <a href="/" data-astro-cid-sz7xmlte>Home</a> <a href="/blog" data-astro-cid-sz7xmlte>Blog</a> <a href="/#projects" data-astro-cid-sz7xmlte>Projects</a> <a href="/#contact" data-astro-cid-sz7xmlte>Contact</a> <a href="/rss.xml" aria-label="RSS Feed" data-astro-cid-sz7xmlte> <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;" data-astro-cid-sz7xmlte> <circle cx="6.18" cy="17.82" r="2.18" data-astro-cid-sz7xmlte></circle> <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z" data-astro-cid-sz7xmlte></path> </svg>
+RSS
+</a> </nav> </div> </div> </footer>  </body></html> <script type="module">function r(){const t=document.getElementById("reading-progress");if(!t)return;const n=document.documentElement.scrollHeight-document.documentElement.clientHeight,d=window.scrollY,s=Math.min(d/n*100,100);t.style.width=`${s}%`}function u(){const t=document.getElementById("toc-sidebar"),n=document.querySelectorAll(".toc-link");if(!t||n.length===0)return;const d=80,s=Array.from(n).map(i=>{const o=i.getAttribute("href")?.slice(1);return o?document.getElementById(o):null}).filter(Boolean);function c(){const i=window.scrollY+d+40;let o=-1;for(let e=s.length-1;e>=0;e--)if(s[e].offsetTop<=i){o=e;break}n.forEach((e,m)=>{m===o?e.classList.add("active"):e.classList.remove("active")})}const l=document.querySelector(".blog-header");function a(){if(!l)return;l.getBoundingClientRect().bottom<0?t.classList.add("visible"):t.classList.remove("visible")}window.addEventListener("scroll",()=>{c(),a()},{passive:!0}),c(),a()}window.addEventListener("scroll",r,{passive:!0});window.addEventListener("resize",r,{passive:!0});r();document.addEventListener("DOMContentLoaded",u);document.addEventListener("astro:page-load",()=>{r(),u()});</script> 
